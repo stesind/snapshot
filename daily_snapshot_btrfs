@@ -2,15 +2,15 @@
 mkdir /tmp/snap
 mount /dev/sdb3 /tmp/snap
 # remove yesterday's snapshot 
-btrfs subvolume delete @snapshot_root-`date +%Y%m%d --date="-3 days"`
-btrfs subvolume delete @snapshot_home-`date +%Y%m%d --date="-3 days"`
-btrfs subvolume delete @snapshot_var-`date +%Y%m%d --date="-3 days"`
-btrfs subvolume delete @snapshot_opt-`date +%Y%m%d --date="-3 days"`
+#btrfs subvolume delete /tmp/snap/@snapshot_root-`date +%Y%m%d --date="-3 days"`
+#btrfs subvolume delete /tmp/snap/@snapshot_home-`date +%Y%m%d --date="-3 days"`
+#btrfs subvolume delete /tmp/snap/@snapshot_var-`date +%Y%m%d --date="-3 days"`
+#btrfs subvolume delete /tmp/snap/@snapshot_opt-`date +%Y%m%d --date="-3 days"`
 
 # create today's snapshot
-btrfs subvolume snapshot /snap/@ /mnt/@snapshot_root-`date +%Y%m%d`
-btrfs subvolume snapshot /snap/@home /mnt/@snapshot_home-`date +%Y%m%d`
-btrfs subvolume snapshot /snap/@var /mnt/@snapshot_var-`date +%Y%m%d`
-btrfs subvolume snapshot /snap/@opt /mnt/@snapshot_opt-`date +%Y%m%d`
+btrfs subvolume snapshot /tmp/snap/@ /tmp/snap/@snapshot_root-`date +%Y%tm%d`
+btrfs subvolume snapshot /tmp/snap/@home /tmp/snap/@snapshot_home-`date +%Y%m%d`
+btrfs subvolume snapshot /tmp/snap/@var /tmp/snap/@snapshot_var-`date +%Y%m%d`
+btrfs subvolume snapshot /tmp/snap/@opt /tmp/snap/@snapshot_opt-`date +%Y%m%d`
 umount /tmp/snap
 rm -rf /tmp/snap
