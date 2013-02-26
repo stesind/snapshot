@@ -1,0 +1,10 @@
+#!/bin/sh
+# remove yesterday's snapshot 
+lvremove -f /dev/vg_home/snap_home-`date +%Y%m%d --date="-3 days"`
+lvremove -f /dev/vg_home/snap_var-`date +%Y%m%d --date="-3 days"`
+lvremove -f /dev/vg_home/snap_opt-`date +%Y%m%d --date="-3 days"`
+
+# create today's snapshot
+lvcreate --size 50G -s -n snap_home-`date +%Y%m%d` /dev/vg_home/lv_home
+lvcreate --size 10G -s -n snap_var-`date +%Y%m%d` /dev/vg_home/lv_var
+lvcreate --size 5G -s -n snap_opt-`date +%Y%m%d` /dev/vg_home/lv_opt
